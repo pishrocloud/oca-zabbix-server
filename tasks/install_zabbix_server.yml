@@ -1,0 +1,52 @@
+---
+- name: Download zabbix releases repository as deb file
+  get_url: 
+    url: wget https://repo.zabbix.com/zabbix/4.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.2-1+xenial_all.deb
+    dest: /tmp/zabbix.deb
+    mode: 0770
+
+- name: Run dpkg to install zabbix releases repository
+  shell: dpkg -i /tmp/zabbix.deb
+
+
+- name: Update apt packages
+  become: true
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+
+
+- name: Install zabbix_server
+  package:
+    name: zabbix-server-mysql
+    state: present
+  register: zabbix_server_install_zabbix_server
+  until: zabbix_server_install_zabbix_server is succeeded
+  retries: 3
+
+
+- name: Create a new database with name 'zabbix'
+  mysql_db:
+    login_user: root
+    login_password: 
+    name: zabbix
+    encoding: utf8
+    collation: utf8_bin
+    state: present
+
+# Removes all anonymous user accounts
+- mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
+
+# Create database user with name 'bob' and password '12345' with all database privileges
+- mysql_user:
+    name: {{ zabbix_server_database_user }}
+    password: {{ zabbix_server_database_password }}
+    priv: 'zabbix.*:ALL'
+    state: present
+
+/etc/zabbix/apache.conf
+php_value date.timezone Asia/Tehran
+
