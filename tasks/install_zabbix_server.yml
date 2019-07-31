@@ -42,8 +42,8 @@
 
 # Create database user with name 'bob' and password '12345' with all database privileges
 - mysql_user:
-    name: {{ zabbix_server_database_user }}
-    password: {{ zabbix_server_database_password }}
+    name: "{{ zabbix_server_database_user }}"
+    password: "{{ zabbix_server_database_password }}"
     priv: 'zabbix.*:ALL'
     state: present
 
