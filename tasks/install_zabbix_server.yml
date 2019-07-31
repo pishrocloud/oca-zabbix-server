@@ -47,6 +47,6 @@
     priv: 'zabbix.*:ALL'
     state: present
 
-/etc/zabbix/apache.conf
-php_value date.timezone Asia/Tehran
+#/etc/zabbix/apache.conf
+#php_value date.timezone Asia/Tehran
 
