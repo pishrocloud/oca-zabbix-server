@@ -1,7 +1,7 @@
 ---
 - name: Download zabbix releases repository as deb file
   get_url: 
-    url: wget https://repo.zabbix.com/zabbix/4.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.2-1+xenial_all.deb
+    url: https://repo.zabbix.com/zabbix/4.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.2-1+xenial_all.deb
     dest: /tmp/zabbix.deb
     mode: 0770
   register: zabbix_server_deb_file
