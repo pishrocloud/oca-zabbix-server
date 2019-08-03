@@ -63,6 +63,8 @@
   when:
     - ansible_virtualization_type != "docker"
 
+- name: import zabbix schema
+  command: cat {{ zabbix_documentation_directory }}/schema.sql | mysql -u{{ zabbix_server_database_user }} -p {{ zabbix_server_database_password }}
 #/etc/zabbix/apache.conf
 #php_value date.timezone Asia/Tehran
 
