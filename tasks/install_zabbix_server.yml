@@ -40,14 +40,14 @@
 
 
 - name: Removes all anonymous user accounts
-- mysql_user:
+  mysql_user:
     name: ''
     host_all: yes
     state: absent
 
 
 - name: Create database user with name 'zabbix' all its database privileges
-- mysql_user:
+  mysql_user:
     name: "{{ zabbix_server_database_user }}"
     password: "{{ zabbix_server_database_password }}"
     priv: 'zabbix.*:ALL'
