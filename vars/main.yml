@@ -17,7 +17,7 @@ zabbix_server_version: 4.2.4
 
 _zabbix_documentation_directory:
   CentOS: /usr/share/doc/zabbix-server-mysql-{{ zabbix_server_version }}
-  Debian: /usr/share/doc/zabbix-server-mysql
+  Debian: /usr/share/zabbix-server-mysql
   Ubuntu: /usr/share/zabbix-server-mysql
 
 zabbix_documentation_directory: "{{ _zabbix_documentation_directory[ansible_distribution] }}"
