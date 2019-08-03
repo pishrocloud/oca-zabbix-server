@@ -18,15 +18,6 @@
 - name: install zabbix_server
   include: install_zabbix_server.yml
 
-- name: unarchive zabbix schema
-  command: gunzip {{ zabbix_documentation_directory }}/schema.sql.gz
-  args:
-    creates: "{{ zabbix_documentation_directory }}/schema.sql"
-  notify:
-    - import zabbix schema
-  when:
-    - ansible_virtualization_type != "docker"
-
 - name: selinux settings for zabbix_server
   seboolean:
     name: "{{ item }}"
