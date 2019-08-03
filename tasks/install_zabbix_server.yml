@@ -38,13 +38,15 @@
     collation: utf8_bin
     state: present
 
-# Removes all anonymous user accounts
+
+- name: Removes all anonymous user accounts
 - mysql_user:
     name: ''
     host_all: yes
     state: absent
 
-# Create database user with name 'bob' and password '12345' with all database privileges
+
+- name: Create database user with name 'zabbix' all its database privileges
 - mysql_user:
     name: "{{ zabbix_server_database_user }}"
     password: "{{ zabbix_server_database_password }}"
