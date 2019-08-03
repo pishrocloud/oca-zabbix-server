@@ -53,6 +53,16 @@
     priv: 'zabbix.*:ALL'
     state: present
 
+
+- name: unarchive zabbix schema
+  command: gunzip {{ zabbix_documentation_directory }}/schema.sql.gz
+  args:
+    creates: "{{ zabbix_documentation_directory }}/schema.sql"
+  notify:
+    - import zabbix schema
+  when:
+    - ansible_virtualization_type != "docker"
+
 #/etc/zabbix/apache.conf
 #php_value date.timezone Asia/Tehran
 
