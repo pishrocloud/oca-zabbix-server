@@ -65,7 +65,7 @@
   mysql_db:
     name: zabbix
     state: import
-    target: {{ zabbix_documentation_directory }}/schema.sql
+    target: "{{ zabbix_documentation_directory }}/schema.sql"
 #/etc/zabbix/apache.conf
 #php_value date.timezone Asia/Tehran
 
