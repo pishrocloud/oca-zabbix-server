@@ -4,7 +4,11 @@
     url: wget https://repo.zabbix.com/zabbix/4.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.2-1+xenial_all.deb
     dest: /tmp/zabbix.deb
     mode: 0770
-
+  register: zabbix_server_deb_file
+  retries: 3
+  until: zabbix_server_deb_file is succeeded
+  
+  
 - name: Run dpkg to install zabbix releases repository
   shell: dpkg -i /tmp/zabbix.deb
 
