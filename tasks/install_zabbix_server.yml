@@ -58,8 +58,6 @@
   command: gunzip {{ zabbix_documentation_directory }}/schema.sql.gz
   args:
     creates: "{{ zabbix_documentation_directory }}/schema.sql"
-  notify:
-    - import zabbix schema
   when:
     - ansible_virtualization_type != "docker"
 
