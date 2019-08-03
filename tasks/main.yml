@@ -19,9 +19,9 @@
   include: install_zabbix_server.yml
 
 - name: unarchive zabbix schema
-  command: gunzip {{ zabbix_documentation_directory }}/create.sql.gz
+  command: gunzip {{ zabbix_documentation_directory }}/schema.sql.gz
   args:
-    creates: "{{ zabbix_documentation_directory }}/create.sql"
+    creates: "{{ zabbix_documentation_directory }}/schema.sql"
   notify:
     - import zabbix schema
   when:
